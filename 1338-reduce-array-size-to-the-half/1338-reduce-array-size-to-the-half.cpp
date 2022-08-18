@@ -13,14 +13,12 @@ public:
         
         while(!pq.empty())
         {
-            // cout<<pq.top().first<<" "<<pq.top().second<<"\n";
             if(n-pq.top().first<=m/2){
                 pq.pop();
                 return m1.size()-pq.size();
             }
             n-=pq.top().first;
-            pq.pop();            
-            
+            pq.pop();                        
         }
       
         return -1;
