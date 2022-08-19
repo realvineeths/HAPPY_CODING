@@ -9,12 +9,12 @@ public:
         {
             if(left[i]==0)  continue;
             left[i]--;
-            if(end[i-1]>0)
+            if(end[i-1]>0)//just increasing the subsequence
             {
                 end[i-1]--;
                 end[i]++;
             }
-            else if(left[i+1]>0 && left[i+2]>0)
+            else if(left[i+1]>0 && left[i+2]>0)//forming a new subsequence
             {
                 left[i+1]--;
                 left[i+2]--;
