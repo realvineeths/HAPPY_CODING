@@ -1,25 +1,25 @@
+
 class Solution {
 public:
-    vector<int> movesToStamp(string stamp, string target) {
-  vector<int> res;
-  auto total_stamp = 0, turn_stamp = -1;
-  while (turn_stamp) {
-      turn_stamp = 0;
-      for (int sz = stamp.size(); sz > 0; --sz) 
-          for (auto i = 0; i <= stamp.size() - sz; ++i) {
-              auto new_stamp = string(i, '*') + stamp.substr(i, sz) + string(stamp.size() - sz - i, '*');
-              auto pos = target.find(new_stamp);
-              while (pos != string::npos) {
-                  res.push_back(pos);
-                  turn_stamp += sz;
-                  fill(begin(target) + pos, begin(target) + pos + stamp.size(), '*');
-                  pos = target.find(new_stamp);
-              }
-          }
-      total_stamp += turn_stamp;
-  }
-  reverse(begin(res), end(res));
-  return total_stamp == target.size() ? res : vector<int>();
-}
-    
-};
+    vector<int> movesToStamp(string S, string T) {
+        if (S == T) return {0};
+        int slen = S.size(), tlen = T.size() - slen + 1, i, j;
+        vector<int> ans;
+        bool tdiff = true, sdiff;
+        while (tdiff)
+            for (i = 0, tdiff = false; i < tlen; i++) {
+                for (j = 0, sdiff = false; j < slen; j++)
+                    if (T[i+j] == '*') continue;
+                    else if (T[i+j] != S[j]) break;
+                    else sdiff = true;
+                if (j == slen && sdiff) {
+                    for (j = i, tdiff = true; j < slen + i; j++)
+                        T[j] = '*';
+                    ans.push_back(i);
+                }
+            }
+        for (i = 0; i < T.size(); i++) if (T[i] != '*') return {};
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+}; 
