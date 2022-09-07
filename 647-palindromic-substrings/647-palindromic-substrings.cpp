@@ -13,7 +13,7 @@ public:
         
     }
     
-    int countSubstringshelp(string s) {
+    int countSubstringshelp(string s) {//RECURSION
         
         int ans=0;
         for(int i=0;i<s.size();i++)
@@ -37,14 +37,10 @@ public:
             j--;
         }
         return dem[i][j]=1;
-        
-        // if (i >= j) return 1;
-        // if (mem[i][j] >= 0) return mem[i][j];
-        // return mem[i][j] = s[i] == s[j] ? helperMem(s, i+1, j-1,mem) : 0;
-        
+                
     }
     
-    int countSubstrings(string s) {
+    int countSubstringsMem(string s) {//MEMOIZATION
         vector<vector<int>>dem(s.size(),vector<int>(s.size(),-1));
         
         int ans=0;
@@ -58,4 +54,25 @@ public:
         }
         return ans;
     }
+        
+    
+     int countSubstrings(string s) {//dp
+        vector<vector<int>> tab(s.size(), vector<int>(s.size()));
+        int count = 0;
+        for(int i = s.size() - 1; i >= 0; --i) {
+            for(int j = i; j < s.size(); ++j) {
+                if (i == j) {
+                    tab[i][j] = 1;
+                } else if (i + 1 == j) {
+                    tab[i][j] = s[i] == s[j] ? 1 : 0;
+                } else {
+                    tab[i][j] = s[i] == s[j] ? tab[i+1][j-1] : 0;
+                }
+                count += tab[i][j];
+            }
+        }
+        return count;
+    }             
+         
+    
 };
