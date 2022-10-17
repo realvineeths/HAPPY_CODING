@@ -3,15 +3,7 @@ public:
     
     
     int largestPerimeter(vector<int>& nums) {
-        
-        // int sum=0,maxnum=0;
-        // for(auto a:nums)    sum+=a;
-        
-        // for(auto a:nums)    maxnum=max(maxnum,a);
-        
-        // sum-=maxnum;
-        // if(maxnum>=sum) return 0;
-        
+          
         sort(nums.begin(),nums.end(),greater<>());
         
         
@@ -19,7 +11,6 @@ public:
         {
             int dem=0;
             dem=nums[i+1]+nums[i+2];
-            cout<<dem<<' ';
             if(nums[i]>=dem)
             {
                 continue;
