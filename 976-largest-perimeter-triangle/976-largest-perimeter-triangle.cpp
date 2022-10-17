@@ -9,14 +9,12 @@ public:
         
         for(int i=0;i<nums.size()-2;i++)
         {
-            int dem=0;
-            dem=nums[i+1]+nums[i+2];
-            if(nums[i]>=dem)
+            if(nums[i]>=nums[i+1]+nums[i+2])
             {
                 continue;
             }
             else{
-                return (dem+nums[i]);
+                return (nums[i+1]+nums[i+2]+nums[i]);
             }
         }
         
